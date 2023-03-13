@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tron.Wallet.Net", "Tron.Wallet.Net\Tron.Wallet.Net.csproj", "{97B409B4-D446-4773-B2EB-43334CE306AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tron.Wallet.Net.Tests", "Tron.Wallet.Net.Tests\Tron.Wallet.Net.Tests.csproj", "{92DB5EB0-14EF-48EB-AFE9-A72BD286C25D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97B409B4-D446-4773-B2EB-43334CE306AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97B409B4-D446-4773-B2EB-43334CE306AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97B409B4-D446-4773-B2EB-43334CE306AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97B409B4-D446-4773-B2EB-43334CE306AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92DB5EB0-14EF-48EB-AFE9-A72BD286C25D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92DB5EB0-14EF-48EB-AFE9-A72BD286C25D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92DB5EB0-14EF-48EB-AFE9-A72BD286C25D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92DB5EB0-14EF-48EB-AFE9-A72BD286C25D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C84CFE2C-5675-4C7F-8852-6D965838C524}
+	EndGlobalSection
+EndGlobal

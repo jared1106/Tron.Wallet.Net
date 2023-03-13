@@ -9,7 +9,10 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Tron.Wallet.Net" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tron.Wallet.Net\Tron.Wallet.Net.csproj" />
   </ItemGroup>
 
 </Project>

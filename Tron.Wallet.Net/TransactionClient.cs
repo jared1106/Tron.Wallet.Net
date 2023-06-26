@@ -1,12 +1,12 @@
-﻿using Google.Protobuf;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using System.Net;
-using System.Text;
-using Tron.Wallet.Net.Crypto;
-using TronNet.Protocol;
+﻿using Microsoft.Extensions.Options;
+using System;
+using System.Threading.Tasks;
 
-namespace Tron.Wallet.Net {
+namespace TronNet {
+    using Google.Protobuf;
+    using TronNet.Crypto;
+    using TronNet.Protocol;
+
     class TransactionClient : ITransactionClient {
         private readonly IWalletClient _walletClient;
         private readonly IOptions<TronNetOptions> _options;
@@ -14,6 +14,27 @@ namespace Tron.Wallet.Net {
         public TransactionClient(IWalletClient walletClient, IOptions<TronNetOptions> options) {
             _walletClient = walletClient;
             _options = options;
+        }
+
+        public async Task<TransactionExtention> CreateAccountPermissionUpdateTransactionAsync(string fromAddress, string toAddress) {
+            var wallet = _walletClient.GetProtocol();
+
+            var accountPermissionUpdateContract = new AccountPermissionUpdateContract {
+                OwnerAddress = _walletClient.ParseAddress(fromAddress),
+                Owner = new Permission() { PermissionName = "owner", Threshold = 1, Type = Permission.Types.PermissionType.Owner }
+            };
+            accountPermissionUpdateContract.Owner.Keys.Add(new Key { Address = _walletClient.ParseAddress(toAddress), Weight = 1 });
+
+            var activePermission = new Permission { PermissionName = "active", Threshold = 1, Type = Permission.Types.PermissionType.Active, Operations = ByteString.CopyFrom("7fff1fc0037e0000000000000000000000000000000000000000000000000000".HexToByteArray()) };
+            activePermission.Keys.Add(new Key { Address = _walletClient.ParseAddress(toAddress), Weight = 1 });
+
+            var permissions = new Google.Protobuf.Collections.RepeatedField<Permission> {
+                activePermission
+            };
+
+            accountPermissionUpdateContract.Actives.Add(permissions);
+
+            return await wallet.AccountPermissionUpdateAsync(accountPermissionUpdateContract);
         }
 
         public async Task<TransactionExtention> CreateTransactionAsync(string from, string to, long amount) {
@@ -62,6 +83,7 @@ namespace Tron.Wallet.Net {
                 Txid = ByteString.CopyFromUtf8(transaction.GetTxid()),
                 Result = new Return { Result = true, Code = Return.Types.response_code.Success },
             };
+
             return transactionExtension;
         }
 
@@ -83,5 +105,6 @@ namespace Tron.Wallet.Net {
 
             return result;
         }
+
     }
 }

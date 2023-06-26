@@ -12,7 +12,6 @@ PM> Install-Package Tron.Wallet.Net
 
 ### Configuration 配置
 
-First,You need to config `Tron.Wallet.Net` in your `Startup.cs`:
 ```c#
 public static class TronServiceExtension {
     private static IServiceProvider AddTronNet() {
@@ -20,10 +19,8 @@ public static class TronServiceExtension {
         services.AddTronNet(x => {
             x.Network = TronNetwork.MainNet;
             x.Channel = new GrpcChannelOption { Host = "grpc.trongrid.io", Port = 50051 };
-            x.SolidityChannel = new GrpcChannelOption { Host = "grpc.trongrid.io", Port = 50052 };
-
-            // 波场主链  API Key，申请地址  http://www.trongrid.io
-            x.ApiKey = "API Key";
+            x.SolidityChannel = new GrpcChannelOption { Host = "grpc.trongrid.io", Port = 50052 };        
+            x.ApiKey = "80a8b20f-a917-43a9-a2f1-809fe6eec0d6";
         });
         services.AddLogging();
         return services.BuildServiceProvider();
